@@ -1,65 +1,77 @@
-import Image from "next/image";
+import Link from 'next/link';
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col">
+      <main className="flex-1 flex items-center justify-center p-6">
+        <div className="max-w-lg w-full text-center space-y-8">
+
+          <div>
+            <h1 className="text-4xl font-bold text-slate-800 mb-3">FEED-BACK ADAPT</h1>
+            <p className="text-slate-500 text-lg">
+              Feedback pédagogique adaptatif pour les mathématiques
+            </p>
+            <p className="text-slate-400 text-sm mt-2">
+              Fédération Wallonie-Bruxelles · Fondamental &amp; Secondaire · FR / NL / EN
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl border border-slate-200 p-6 text-left space-y-4">
+            <h2 className="font-semibold text-slate-700">Comment ça fonctionne</h2>
+            <div className="space-y-3 text-sm text-slate-600">
+              <div className="flex gap-3">
+                <span className="text-blue-500 font-bold">1.</span>
+                <p>L&apos;enseignant crée une session et donne le code 4 lettres à l&apos;élève</p>
+              </div>
+              <div className="flex gap-3">
+                <span className="text-blue-500 font-bold">2.</span>
+                <p>L&apos;élève répond aux questions sur sa tablette, sans connexion requise</p>
+              </div>
+              <div className="flex gap-3">
+                <span className="text-blue-500 font-bold">3.</span>
+                <p>L&apos;IA classifie l&apos;erreur et génère un feedback adapté au type d&apos;obstacle cognitif</p>
+              </div>
+              <div className="flex gap-3">
+                <span className="text-blue-500 font-bold">4.</span>
+                <p>L&apos;enseignant suit les résultats en temps réel depuis son tableau de bord</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2 text-xs text-left">
+            {[
+              { color: 'bg-amber-50 border-amber-200 text-amber-700', label: 'Épistémologique', desc: 'Savoir antérieur obstacle' },
+              { color: 'bg-blue-50 border-blue-200 text-blue-700', label: 'Didactique', desc: 'Mauvaise lecture du contrat' },
+              { color: 'bg-cyan-50 border-cyan-200 text-cyan-700', label: 'Ontogénique', desc: 'Stade de développement' },
+              { color: 'bg-violet-50 border-violet-200 text-violet-700', label: 'Linguistique', desc: 'Interférence CLIL' },
+            ].map(t => (
+              <div key={t.label} className={`rounded-xl border p-3 ${t.color}`}>
+                <p className="font-medium">{t.label}</p>
+                <p className="opacity-70 mt-0.5">{t.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex gap-3 justify-center">
+            <Link
+              href="/login"
+              className="bg-blue-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-blue-700 transition-colors"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Espace enseignant
+            </Link>
+            <Link
+              href="/register"
+              className="border border-slate-200 text-slate-700 px-6 py-3 rounded-xl font-medium hover:bg-slate-50 transition-colors"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+              Créer un compte
+            </Link>
+          </div>
         </div>
       </main>
+
+      <footer className="text-center text-xs text-slate-400 py-4">
+        PLAI · Pôle Liégeois d&apos;Accompagnement vers une École Inclusive
+      </footer>
     </div>
   );
 }
