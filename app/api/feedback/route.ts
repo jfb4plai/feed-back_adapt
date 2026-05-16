@@ -6,10 +6,32 @@ import { getItemById } from '@/lib/items';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
+// Rate limiter simple — par IP, par instance serverless
+const rateLimitMap = new Map<string, { count: number; start: number }>();
+const RATE_LIMIT = 20;
+const RATE_WINDOW = 60 * 1000;
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now - entry.start > RATE_WINDOW) {
+    rateLimitMap.set(ip, { count: 1, start: now });
+    return true;
+  }
+  if (entry.count >= RATE_LIMIT) return false;
+  entry.count++;
+  return true;
+}
+
 export async function POST(req: Request) {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown';
+  if (!checkRateLimit(ip)) {
+    return Response.json({ error: 'Trop de requêtes — réessayez dans 1 minute.' }, { status: 429 });
+  }
+
   try {
     const body = await req.json();
-    const { itemId, answerIndex, mode, lang, studentName, errorCount } = body;
+    const { itemId, answerIndex, mode, lang, studentCode, errorCount } = body;
 
     const item = getItemById(itemId);
     if (!item) {
@@ -48,7 +70,7 @@ export async function POST(req: Request) {
       classification,
       mode,
       lang,
-      studentName,
+      studentCode,
     });
 
     const message = await client.messages.create({

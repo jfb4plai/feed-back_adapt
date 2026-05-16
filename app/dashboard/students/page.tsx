@@ -10,7 +10,7 @@ export default async function StudentsPage() {
     .from('fba_students')
     .select('*')
     .eq('teacher_id', user.id)
-    .order('name');
+    .order('code');
 
   const langLabel: Record<string, string> = { FR: 'Français', NL: 'Néerlandais', EN: 'Anglais' };
   const modeLabel: Record<string, string> = { fondamental: 'Fondamental', secondaire: 'Secondaire' };
@@ -39,7 +39,7 @@ export default async function StudentsPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-slate-100">
-                <th className="text-left px-4 py-3 text-xs text-slate-400 font-medium">Nom</th>
+                <th className="text-left px-4 py-3 text-xs text-slate-400 font-medium">Code</th>
                 <th className="text-left px-4 py-3 text-xs text-slate-400 font-medium">Niveau</th>
                 <th className="text-left px-4 py-3 text-xs text-slate-400 font-medium">Langue</th>
                 <th className="text-left px-4 py-3 text-xs text-slate-400 font-medium">Inscrit le</th>
@@ -48,7 +48,7 @@ export default async function StudentsPage() {
             <tbody>
               {students.map(student => (
                 <tr key={student.id} className="border-b border-slate-50">
-                  <td className="px-4 py-3 font-medium text-slate-800">{student.name}</td>
+                  <td className="px-4 py-3 font-medium text-slate-800">{student.code}</td>
                   <td className="px-4 py-3 text-slate-500">{modeLabel[student.mode] ?? student.mode}</td>
                   <td className="px-4 py-3 text-slate-500">{langLabel[student.lang] ?? student.lang}</td>
                   <td className="px-4 py-3 text-slate-400 text-xs">

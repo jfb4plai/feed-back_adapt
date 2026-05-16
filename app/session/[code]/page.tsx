@@ -19,7 +19,7 @@ interface SessionData {
   id: string;
   mode: 'fondamental' | 'secondaire';
   lang: 'FR' | 'NL' | 'EN';
-  fba_students: { id: string; name: string };
+  fba_students: { id: string; code: string };
 }
 
 export default function StudentSessionPage() {
@@ -88,7 +88,7 @@ export default function StudentSessionPage() {
         answerIndex,
         mode: session.mode,
         lang: session.lang,
-        studentName: session.fba_students.name,
+        studentCode: session.fba_students.code,
         errorCount: 0,
       }),
     });
@@ -136,7 +136,7 @@ export default function StudentSessionPage() {
           total_count: score.total,
         }),
       });
-      router.push(`/session/${code}/complete?score=${score.correct}&total=${items.length}&name=${encodeURIComponent(session?.fba_students.name ?? '')}`);
+      router.push(`/session/${code}/complete?score=${score.correct}&total=${items.length}&code=${encodeURIComponent(session?.fba_students.code ?? '')}`);
     } else {
       setCurrentIndex(nextIndex);
       setSelectedAnswer(null);
@@ -179,7 +179,7 @@ export default function StudentSessionPage() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <p className={`font-semibold ${isFondamental ? 'text-blue-700' : 'text-slate-700'}`}>
-              {session.fba_students.name}
+              {session.fba_students.code}
             </p>
             <p className="text-xs text-slate-400">
               {currentIndex + 1} / {items.length}

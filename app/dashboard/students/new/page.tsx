@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function NewStudentPage() {
   const router = useRouter();
-  const [name, setName] = useState('');
+  const [code, setCode] = useState('');
   const [mode, setMode] = useState<'fondamental' | 'secondaire'>('fondamental');
   const [lang, setLang] = useState<'FR' | 'NL' | 'EN'>('FR');
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ export default function NewStudentPage() {
 
     const { error: err } = await supabase.from('fba_students').insert({
       teacher_id: user.id,
-      name: name.trim(),
+      code: code.trim(),
       mode,
       lang,
     });
@@ -47,15 +47,16 @@ export default function NewStudentPage() {
 
       <form onSubmit={handleSubmit} className="bg-white rounded-xl border border-slate-200 p-6 space-y-5">
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Prénom de l&apos;élève</label>
+          <label className="block text-sm font-medium text-slate-700 mb-1">Code élève</label>
           <input
             type="text"
-            value={name}
-            onChange={e => setName(e.target.value)}
+            value={code}
+            onChange={e => setCode(e.target.value)}
             required
             className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Emma"
+            placeholder="EL-01"
           />
+          <p className="text-xs text-slate-400 mt-1">Code anonyme — aucun prénom stocké (ex : EL-01, B3, X7)</p>
         </div>
 
         <div>
@@ -102,7 +103,7 @@ export default function NewStudentPage() {
 
         <button
           type="submit"
-          disabled={loading || !name.trim()}
+          disabled={loading || !code.trim()}
           className="w-full bg-blue-600 text-white rounded-lg py-2.5 text-sm font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors"
         >
           {loading ? 'Enregistrement…' : 'Créer l\'élève'}

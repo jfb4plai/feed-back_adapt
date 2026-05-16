@@ -5,10 +5,10 @@ import { QRCodeSVG } from 'qrcode.react';
 
 interface Props {
   studentId: string;
-  studentName: string;
+  studentCode: string;
 }
 
-export default function NewSessionButton({ studentId, studentName }: Props) {
+export default function NewSessionButton({ studentId, studentCode }: Props) {
   const [state, setState] = useState<'idle' | 'loading' | 'show'>('idle');
   const [sessionCode, setSessionCode] = useState('');
   const [sessionUrl, setSessionUrl] = useState('');
@@ -51,7 +51,7 @@ export default function NewSessionButton({ studentId, studentName }: Props) {
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl shadow-xl max-w-sm w-full p-6 text-center">
         <h3 className="font-bold text-slate-800 mb-1">Session créée</h3>
-        <p className="text-slate-500 text-sm mb-4">{studentName}</p>
+        <p className="text-slate-500 text-sm mb-4">{studentCode}</p>
 
         {/* Code 4 lettres */}
         <div className="bg-slate-50 rounded-xl py-4 mb-4">

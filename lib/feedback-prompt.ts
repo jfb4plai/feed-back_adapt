@@ -8,9 +8,9 @@ export function buildFeedbackPrompt(params: {
   classification: Classification;
   mode: 'fondamental' | 'secondaire';
   lang: 'FR' | 'NL' | 'EN';
-  studentName: string;
+  studentCode: string;
 }): string {
-  const { item, wrongAnswer, correctAnswer, classification, mode, lang, studentName } = params;
+  const { item, wrongAnswer, correctAnswer, classification, mode, lang, studentCode } = params;
   const { type, obstacle } = classification;
 
   const modeInstructions = {
@@ -47,7 +47,7 @@ export function buildFeedbackPrompt(params: {
 
   return `Tu es FEED-BACK ADAPT, assistant pédagogique pour la Fédération Wallonie-Bruxelles.
 
-Mode: ${mode} | Langue: ${lang} | Élève: ${studentName}
+Mode: ${mode} | Langue: ${lang} | Élève: ${studentCode}
 Question: "${questionText}"
 Réponse de l'élève: "${wrongAnswer}"
 Réponse correcte: "${correctAnswer}"

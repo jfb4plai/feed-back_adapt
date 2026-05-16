@@ -7,15 +7,15 @@ function CompleteContent() {
   const params = useSearchParams();
   const score = parseInt(params.get('score') ?? '0');
   const total = parseInt(params.get('total') ?? '5');
-  const name = params.get('name') ?? 'Élève';
+  const code = params.get('code') ?? 'Élève';
 
   const pct = Math.round((score / total) * 100);
 
   const messages = [
-    { min: 80, emoji: '🌟', text: `Excellent travail, ${name} !` },
-    { min: 60, emoji: '👍', text: `Bien joué, ${name} !` },
-    { min: 40, emoji: '💪', text: `Continue comme ça, ${name} !` },
-    { min: 0,  emoji: '🌱', text: `On progresse, ${name} !` },
+    { min: 80, emoji: '🌟', text: `Excellent travail, ${code} !` },
+    { min: 60, emoji: '👍', text: `Bien joué, ${code} !` },
+    { min: 40, emoji: '💪', text: `Continue comme ça, ${code} !` },
+    { min: 0,  emoji: '🌱', text: `On progresse, ${code} !` },
   ];
 
   const msg = messages.find(m => pct >= m.min) ?? messages[messages.length - 1];
