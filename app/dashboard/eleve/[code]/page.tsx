@@ -58,7 +58,7 @@ export default async function VueElevePage({ params }: { params: { code: string 
   // Grouper par session
   const quizBySession = new Map<string, { sessionCode: string; quizTitle: string; date: string; correct: number; total: number }>();
   for (const r of quizResponses ?? []) {
-    const sess = r.quiz_sessions as { code: string; started_at: string; quiz_quizzes: { title: string } | null } | null;
+    const sess = r.quiz_sessions as unknown as { code: string; started_at: string; quiz_quizzes: { title: string } | null } | null;
     if (!sess) continue;
     if (!quizBySession.has(r.session_id)) {
       quizBySession.set(r.session_id, {
