@@ -34,3 +34,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Licences
+
+- **Code** : [PolyForm Noncommercial 1.0.0](LICENSE). Usage non commercial uniquement.
+- **Contenus pédagogiques** : [CC BY-NC-SA 4.0](LICENSE-CONTENT.md). Réutilisation et adaptation non commerciales, avec attribution et partage dans les mêmes conditions.
+- **Logo et identité visuelle PLAI** : tous droits réservés (voir `LICENSE-CONTENT.md`).
+
+Auteur : Jean-François Beguin, Référent numérique, https://jfb4plai.com
