@@ -71,6 +71,13 @@ export default function LandingPage() {
 
       <footer className="text-center text-xs text-slate-400 py-4">
         PLAI · Pôle Liégeois d&apos;Accompagnement vers une École Inclusive
+        <p className="mt-1">
+          Code :{' '}
+          <a href="https://polyformproject.org/licenses/noncommercial/1.0.0" target="_blank" rel="noopener noreferrer" className="underline">PolyForm Noncommercial 1.0.0</a>
+          {' · '}Contenus :{' '}
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" target="_blank" rel="noopener noreferrer" className="underline">CC BY-NC-SA 4.0</a>
+          {' · '}Jean-François Beguin, jfb4plai.com
+        </p>
       </footer>
     </div>
   );
